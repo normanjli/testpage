@@ -1,25 +1,38 @@
 import './App.css';
+import axios from 'axios';
 import Button from './components/button/Button'
 import Input from './components/input/input'
 import React, {useState} from 'react'
+import Displaycard from './components/displaycard/Displaycard';
 
 function App() {
   const [inputValue, setInputValue] = useState('')
-  const onChange = (event) =>{
+  const [drink, setDrink] = useState(``)
+  console.log(drink.length)
+  let drinkCard
+  const onChange=(event)=>{
     setInputValue(event.target.value)
   }
-  const onClick = (event) =>{
-    console.log(inputValue)
+  const drinkClick = () =>{
+    axios.get(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
+    .then(res =>{
+        let {drinks} = res.data
+        let item = drinks.pop()
+        console.log(item)
+        setDrink(item)
+    })
   }
-    let array = []
-    for(let i = 0;i<=4;i++){
-      array.push(<Button onClick={onClick} key={i} id={`test${+i}`}/>)
-    }
+  if(drink.length ===0){
+    console.log(`test`)
+  }else{
+    drinkCard = <Displaycard drink={drink}/>
+  }
 
   return (
     <>
-    <div id='scring' style={{display: 'flex', backgroundColor:'blue',justifyContent:'space-around'}}>{array}</div>
     <Input inputValue={inputValue} onChange={onChange}/>
+    <Button onClick={drinkClick} id={`test`} text={`Big Drink button`}/>
+    {drinkCard}
     </>
   );
 }
