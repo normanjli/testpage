@@ -15,7 +15,10 @@ code {
   text-align: center;
   margin:auto;
 }
-
+.searchdrink{
+  height:9vh;
+  margin-top: 2%;
+}
 .drink{
   background-color:gray;
   display:flex;
