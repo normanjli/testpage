@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Search = ({inputValue, onChange, placeholder, key, onSubmit,sent}) => {
+const Search = ({inputValue, onChange, key, onSubmit,sent}) => {
     let searchingFor = ''
     if(inputValue===``){
         
@@ -11,7 +11,7 @@ const Search = ({inputValue, onChange, placeholder, key, onSubmit,sent}) => {
     }
     return (
         <form className='searchdrink' onSubmit={onSubmit}>
-            <input placeholder={placeholder} onChange = {onChange} key = {key}></input>
+            <input placeholder='Enter a drink to search for' onChange = {onChange} key = {key}></input>
             <input type='submit'value='Search for drink'></input>
             <p>{searchingFor}</p>
         </form>
