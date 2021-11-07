@@ -30,7 +30,8 @@ code {
   display:flex;
   flex-direction:column;
   align-content: center;
-  max-width: fit-content;
+  width:auto;
+  max-width: 30vh;
   max-height: fit-content;
   padding-bottom: 1vh;
   border-radius: 10px;
@@ -40,7 +41,7 @@ code {
   border-top-right-radius:10px ;
   padding-bottom: 1vh;
   object-fit:contain;
-  max-width:30vw;
+  max-width:100%;
 }
 .hide{
   display: none;
