@@ -47,8 +47,11 @@ code {
   display: none;
 }
 .links{
-  max-width: 20vw;
+  max-width: 50vh;
+  width:auto;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   padding-top: 1vh;
 }
 .login{
