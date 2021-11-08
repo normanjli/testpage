@@ -9,6 +9,7 @@ const Login = () => {
     return (
         <div>
             <form className='login'>
+                <h1>TODO make it go boom</h1>
                 <div>
                     <label>Username </label>
                     <input id='username' type='text' placeholder='Username'></input>
