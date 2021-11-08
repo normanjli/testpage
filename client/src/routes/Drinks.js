@@ -17,8 +17,8 @@ const Drinks = () => {
     axios.get(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
     .then(res =>{
         let {drinks} = res.data
-        let item = drinks.pop()
-        setDrink(item)
+        console.log(drinks)
+        setDrink(drinks)
     })
   }
   const onSubmit = (event)=>{
@@ -26,19 +26,19 @@ const Drinks = () => {
     let searchTerm = inputValue.replace(` `, `+`)
     axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`).then(res=>{
       let {drinks} = res.data
+      console.log(drinks)
       setDrink(drinks)
       drink===null?setSent(true):setSent(false)
     }).catch(err=>console.log(err))
   }
-  if(drink===null){
-  }
-  else if(drink.length === undefined){
-    let key = drink.idDrink
-    drinkCard.push(<Displaycard drink={drink} key={key}/>)
-  }else{
-    for(let i=0;i<drink.length;i++){
-      let key = drink[i].idDrink
-      drinkCard.push(<Displaycard drink={drink[i]} key={key}/>)
+  if(drink!==null){
+    if(drink.length === 1){
+      drinkCard.push(<Displaycard drink={drink[0]}/>)
+    }else{
+      for(let i=0;i<drink.length;i++){
+        let key = drink[i].idDrink
+        drinkCard.push(<Displaycard drink={drink[i]} key={key}/>)
+      }
     }
   }
   return (
