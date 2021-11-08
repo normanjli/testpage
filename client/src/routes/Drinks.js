@@ -33,10 +33,12 @@ const Drinks = () => {
   if(drink===null){
   }
   else if(drink.length === undefined){
-    drinkCard.push(<Displaycard drink={drink}/>)
+    let key = drink.idDrink
+    drinkCard.push(<Displaycard drink={drink} key={key}/>)
   }else{
     for(let i=0;i<drink.length;i++){
-      drinkCard.push(<Displaycard drink={drink[i]}/>)
+      let key = drink[i].idDrink
+      drinkCard.push(<Displaycard drink={drink[i]} key={key}/>)
     }
   }
   return (
