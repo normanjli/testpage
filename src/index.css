@@ -45,3 +45,24 @@ code {
 .hide{
   display: none;
 }
+.links{
+  max-width: 20vw;
+  display: flex;
+  padding-top: 1vh;
+}
+.login{
+  display: flex;
+  flex-direction: column;
+  background-color: gray;
+  max-width: fit-content;
+  padding:10px;
+  align-items: center;
+  justify-content: space-between;
+  height: 10vh;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+.navbar{
+  background-color: lightblue;
+  padding: 10px;
+}

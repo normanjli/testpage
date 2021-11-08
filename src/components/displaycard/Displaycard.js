@@ -5,7 +5,7 @@ const Displaycard = ({drink}) => {
     let url=`https://www.thecocktaildb.com/drink/${idDrink}`
     return (
         <div className='drink'>
-            <a href={url}>
+            <a href={url} rel="noreferrer noopener" target='_blank'>
             <img className = "drink-img" src={strDrinkThumb} alt={strDrink}/>
             </a>
             <h2 className="drink">{strDrink}</h2>
