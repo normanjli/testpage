@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Displaycard = ({drink}) => {
     let {strDrinkThumb, strDrink, idDrink} = drink
     let url=`https://www.thecocktaildb.com/drink/${idDrink}`
+    let [isLoading, setIsLoading] = useState(false)
+
     return (
         <div className='drink'>
             <a href={url} rel="noreferrer noopener" target='_blank'>

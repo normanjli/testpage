@@ -1,17 +1,23 @@
-import axios from "axios";
-
 const handler ={
-    ingredientChecker:(ingredients)=>{
-        let ingredientsArr = ingredients.split(`,`)
-        let drinksArr = []
-        ingredientsArr=ingredientsArr.forEach(element => element.trim());
-        for(let i=0;i<ingredientsArr;i++){
-            axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${ingredientsArr[i]}`).then(res=>{
-                let {drinks}=res.data
-                drinksArr.push(drinks)
-            })
-        };
-        return drinksArr
+
+    drinkArrayHandler:(drinksArr)=>{
+        let ans = []
+        let drinkDict ={}
+        for (let currentDrink of drinksArr){
+            if (drinkDict[currentDrink.idDrink]===undefined){
+                drinkDict[currentDrink.idDrink] = [currentDrink,1]
+            }else{
+                let a , count
+                [a, count] = drinkDict[currentDrink.idDrink]
+                drinkDict[currentDrink.idDrink] = [a,++count]
+            }
+        }
+        Object.keys(drinkDict)
+            .map((i)=> [+i, drinkDict[i]])
+            .sort((firstDrink, secondDrink)=>secondDrink[1][1]-firstDrink[1][1])
+            .filter(drink => drink[1][1]>1)
+            .forEach(drink=>ans.push(drink[1][0]))
+        return ans
     }
 }
 export default handler

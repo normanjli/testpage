@@ -3,7 +3,7 @@ import axios from 'axios';
 import Displaycard from '../components/displaycard/Displaycard';
 import Search from '../components/search/search';
 import Button from '../components/button/Button'
-
+import handler from '../handler';
 
 const Drinks = () => {
   const [searchDrinkVal, setSearchDrinkVal] = useState('')
@@ -48,7 +48,6 @@ const Drinks = () => {
     }
     else{
       let drinksArr =[]
-      let ans = []
       for (let i of ingredientsArr){
         let searchTerm = i.trim().replace(` `,`+`)
         var res = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchTerm}`)
@@ -57,26 +56,11 @@ const Drinks = () => {
           drinksArr.push(...drinks)
         }else{
           setSent(true)
+          return
         }
       }
-      let drinkDict ={}
-      for (let currentDrink of drinksArr){
-        if (drinkDict[currentDrink.idDrink]===undefined){
-          drinkDict[currentDrink.idDrink] = [currentDrink,1]
-        }else{
-          let a , count
-          [a, count] = drinkDict[currentDrink.idDrink]
-          drinkDict[currentDrink.idDrink] = [a,++count]
-        }
-      }
-      var drinksObjArr = Object.keys(drinkDict)
-        .map(function(i) {
-        return [+i, drinkDict[i]];
-      });
-      drinksObjArr.sort((firstDrink, secondDrink)=>secondDrink[1][1]-firstDrink[1][1])
-      .filter(drink => drink[1][1]>1)
-      .forEach(drink=>ans.push(drink[1][0]))
-      ans?setDrink(ans):setSent(true)
+    const ans = handler.drinkArrayHandler(drinksArr)
+    ans?setDrink(ans):setSent(true)
     };
   }
   const [searchType, setSearchType] = useState(`ingredient`)
