@@ -64,7 +64,6 @@ const Drinks = () => {
         if (drinkDict[currentDrink.idDrink]===undefined){
           drinkDict[currentDrink.idDrink] = [currentDrink,1]
         }else{
-          console.log(2)
           let a , count
           [a, count] = drinkDict[currentDrink.idDrink]
           drinkDict[currentDrink.idDrink] = [a,++count]
