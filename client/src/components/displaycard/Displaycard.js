@@ -1,15 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Displaycard = ({drink}) => {
-    let {strDrinkThumb, strDrink, idDrink} = drink
-    let url=`https://www.thecocktaildb.com/drink/${idDrink}`
-    let [isLoading, setIsLoading] = useState(false)
-
+const Displaycard = ({drink, onClick}) => {
+    let {strDrinkThumb, strDrink} = drink
     return (
-        <div className='drink'>
-            <a href={url} rel="noreferrer noopener" target='_blank'>
+        <div className='drinkcard' onClick={onClick}>
             <img className = "drink-img" src={strDrinkThumb} alt={strDrink}/>
-            </a>
             <h2 className="drinkName">{strDrink}</h2>
         </div>
     );

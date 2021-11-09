@@ -3,14 +3,17 @@ import axios from 'axios';
 import Displaycard from '../components/displaycard/Displaycard';
 import Search from '../components/search/search';
 import Button from '../components/button/Button'
+import FullDisplayCard from '../components/FullDisplayCard';
 import handler from '../handler';
 
 const Drinks = () => {
   const [searchDrinkVal, setSearchDrinkVal] = useState('')
   const [searchIngVal, setSearchIngVal] = useState('')
   const [drinkArr, setDrink] = useState(``)
-  let drinkCard =[]
+  let drinkCard = []
+  let [fullDrinkCard, setFullDrinkCard] = useState()
   const [sent, setSent] = useState('')
+  const [displayedDrink,setDisplayedDrink] = useState(``)
   const onChangeDrink=(event)=>{
     setSearchDrinkVal(event.target.value)
     setSent(false)
@@ -63,14 +66,25 @@ const Drinks = () => {
     ans?setDrink(ans):setSent(true)
     };
   }
-  const [searchType, setSearchType] = useState(`ingredient`)
-  
+  const [searchType, setSearchType] = useState(`drink`)
+  const close = ()=>{
+    setFullDrinkCard()
+    setDisplayedDrink(``)
+  }
+  const renderFullDrink = (drink)=>{
+    if (displayedDrink!==drink.idDrink){
+      setDisplayedDrink(drink.idDrink)
+      setFullDrinkCard(<FullDisplayCard drink={drink} onClick={()=>close()}/>)
+      console.log(fullDrinkCard)
+      console.log(displayedDrink)
+    }
+  }
   
   let drinkSearch =  <Search searchType={searchType} placeholder='Enter a search term' inputValue={searchDrinkVal} onChange={onChangeDrink} onSubmit={onSubmitDrink} sent={sent} key='drinksearch' text={`Search by Drink name`}/>
   let ingredientSearch = <Search searchType={searchType} placeholder='Enter comma separated ingredients' inputValue={searchIngVal} onChange={onChangeIng} onSubmit={onSubmitIngredient} sent={sent} key='ingsearch' text={`Search by Ingredients`}/>
   if(drinkArr!==`` && !drinkArr.includes(undefined)){
     for(let i=0;i<drinkArr.length;i++){
-      drinkCard.push(<Displaycard drink={drinkArr[i]} key={drinkArr[i].idDrink}/>)
+      drinkCard.push(<Displaycard drink={drinkArr[i]} key={drinkArr[i].idDrink} onClick={()=>renderFullDrink(drinkArr[i])}/>)
     }
   }
   return (
@@ -79,14 +93,15 @@ const Drinks = () => {
     <Button className='searchbtn' onClick={()=>{
       setSearchType(`drink`);
       setSearchDrinkVal('')
-      }} id={`searchdrink`} text={`Search by Drink name`}/>
+    }} id={`searchdrink`} text={`Search by Drink name`}/>
     <Button className='searchbtn' onClick={()=>{
       setSearchType(`ingredient`);
       setSearchIngVal('')
-      }} id={`searchingredient`} text={`Search by Ingredients`}/>
+    }} id={`searchingredient`} text={`Search by Ingredients`}/>
     </div>
     {searchType===`drink`?drinkSearch:ingredientSearch}
     <Button onClick={drinkClick} id={`test`} text={`Find a random Drink`}/>
+    {fullDrinkCard}
     <div className='drink-container'>{drinkCard}</div>
     </>
   )
