@@ -16,8 +16,11 @@ code {
   margin:auto;
 }
 .searchdrink{
-  height:9vh;
-  margin-top: 2%;
+  height:auto;
+  max-height: 10em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+
 }
 .drink-container{
   max-height: 100vh;
@@ -34,13 +37,14 @@ code {
   width:auto;
   max-width: 30vh;
   max-height: fit-content;
-  padding-bottom: 1vh;
+  padding-bottom: 1em;
   border-radius: 10px;
+  margin-top:1em;
 }
 .drink-img{
   border-top-left-radius: 10px;
   border-top-right-radius:10px ;
-  padding-bottom: 1vh;
+  padding-bottom: .25em;
   object-fit:contain;
   max-width:100%;
 }
@@ -48,7 +52,7 @@ code {
   display: none;
 }
 .links{
-  max-width: 50vh;
+  max-width: 30em;
   width:auto;
   display: flex;
   flex-wrap: wrap;
@@ -74,4 +78,18 @@ code {
 .navbar{
   background-color: lightblue;
   padding: 10px;
+  position: fixed top;
+  margin-bottom:1em;
+}
+.searchtypebtn{
+  display: flex;
+  max-width: 20em;
+  width:auto;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  -ms-flex-align: center;
+}
+.searchbtn:focus{
+  background:lightblue;
+  border:gray solid 1px;
 }
