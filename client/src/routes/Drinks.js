@@ -8,7 +8,7 @@ import Button from '../components/button/Button'
 const Drinks = () => {
   const [searchDrinkVal, setSearchDrinkVal] = useState('')
   const [searchIngVal, setSearchIngVal] = useState('')
-  const [drink, setDrink] = useState(``)
+  const [drinkArr, setDrink] = useState(``)
   let drinkCard =[]
   const [sent, setSent] = useState('')
   const onChangeDrink=(event)=>{
@@ -35,9 +35,10 @@ const Drinks = () => {
       drinks?setDrink(drinks):setSent(true)
     }).catch(err=>console.log(err))
   }
-  const onSubmitIngredient = (event)=>{
+  const onSubmitIngredient = async (event)=>{
     event.preventDefault()
     let ingredientsArr = searchIngVal.split(`,`)
+    
     if (ingredientsArr.length===1){
       axios.get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredientsArr[0].trim()}`)
       .then(res=>{
@@ -47,29 +48,25 @@ const Drinks = () => {
     }
     else{
       let drinksArr =[]
+      let ans = []
       for (let i of ingredientsArr){
-        axios.get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${i.trim()}`)
-        .then( res=>{
-          let {drinks}=res.data
-          if (drinks){
-            drinksArr.push(...drinks)
-            if (i === ingredientsArr[ingredientsArr.length-1]){
-              let ans = []
-              drinksArr.forEach((element,index)=>{
-                for(let j = index+1; j<drinksArr.length;j++){
-                  if(element.strDrink===drinksArr[j].strDrink){
-                    ans.push(element)
-                  }
-                }
-                })
-            setDrink(ans)
-            setSent(false)
-            }
-          }else{
-            setSent(true)
-          }
-        }).catch(err=>console.log(err))
+        let searchTerm = i.trim().replace(` `,`+`)
+        var res = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchTerm}`)
+        let {drinks}=res.data
+        if (drinks){
+          drinksArr.push(...drinks)
+        }else{
+          setSent(true)
+        }
       }
+      drinksArr.forEach((element,index)=>{
+        for(let j = index+1; j<drinksArr.length;j++){
+          if(element.strDrink===drinksArr[j].strDrink){
+            ans.push(element)
+          }
+        }
+      })
+      ans?setDrink(ans):setSent(true)
     };
   }
   const [searchType, setSearchType] = useState(`ingredient`)
@@ -77,10 +74,10 @@ const Drinks = () => {
   
   let drinkSearch =  <Search searchType={searchType} placeholder='Enter a search term' inputValue={searchDrinkVal} onChange={onChangeDrink} onSubmit={onSubmitDrink} sent={sent} key='drinksearch' text={`Search by Drink name`}/>
   let ingredientSearch = <Search searchType={searchType} placeholder='Enter comma separated ingredients' inputValue={searchIngVal} onChange={onChangeIng} onSubmit={onSubmitIngredient} sent={sent} key='ingsearch' text={`Search by Ingredients`}/>
-  if(drink!==`` && !drink.includes(undefined)){
-    for(let i=0;i<drink.length;i++){
-      let key = drink[i].idDrink
-      drinkCard.push(<Displaycard drink={drink[i]} key={key}/>)
+  if(drinkArr!==`` && !drinkArr.includes(undefined)){
+    for(let i=0;i<drinkArr.length;i++){
+      let key = drinkArr[i].idDrink
+      drinkCard.push(<Displaycard drink={drinkArr[i]} key={key}/>)
     }
   }
   return (
