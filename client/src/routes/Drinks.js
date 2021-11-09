@@ -59,13 +59,24 @@ const Drinks = () => {
           setSent(true)
         }
       }
-      drinksArr.forEach((element,index)=>{
-        for(let j = index+1; j<drinksArr.length;j++){
-          if(element.strDrink===drinksArr[j].strDrink){
-            ans.push(element)
-          }
+      let drinkDict ={}
+      for (let currentDrink of drinksArr){
+        if (drinkDict[currentDrink.idDrink]===undefined){
+          drinkDict[currentDrink.idDrink] = [currentDrink,1]
+        }else{
+          console.log(2)
+          let a , count
+          [a, count] = drinkDict[currentDrink.idDrink]
+          drinkDict[currentDrink.idDrink] = [a,++count]
         }
-      })
+      }
+      var drinksObjArr = Object.keys(drinkDict)
+        .map(function(i) {
+        return [+i, drinkDict[i]];
+      });
+      drinksObjArr.sort((firstDrink, secondDrink)=>secondDrink[1][1]-firstDrink[1][1])
+      .filter(drink => drink[1][1]>1)
+      .forEach(drink=>ans.push(drink[1][0]))
       ans?setDrink(ans):setSent(true)
     };
   }
@@ -76,8 +87,7 @@ const Drinks = () => {
   let ingredientSearch = <Search searchType={searchType} placeholder='Enter comma separated ingredients' inputValue={searchIngVal} onChange={onChangeIng} onSubmit={onSubmitIngredient} sent={sent} key='ingsearch' text={`Search by Ingredients`}/>
   if(drinkArr!==`` && !drinkArr.includes(undefined)){
     for(let i=0;i<drinkArr.length;i++){
-      let key = drinkArr[i].idDrink
-      drinkCard.push(<Displaycard drink={drinkArr[i]} key={key}/>)
+      drinkCard.push(<Displaycard drink={drinkArr[i]} key={drinkArr[i].idDrink}/>)
     }
   }
   return (
