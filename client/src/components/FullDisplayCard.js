@@ -17,17 +17,21 @@ const FullDisplayCard = ({drink,onClick}) => {
     return (
         <div>
             <div className='fulldrink'>
-                <button className='closebtn' onClick={onClick}>x</button>
+                    <button className='closebtn' onClick={onClick}>x</button>
                     <h1 className="drinkName">{strDrink}</h1>
-                <div className='fullDrinkDetails'>
-                    <a href={url} rel="noreferrer noopener" target='_blank'>
-                        <img className = "fulldrink-img" src={strDrinkThumb} alt={strDrink}/>
-                    </a>
-                    <div>
+                    <div className='fullDrinkDetails'>
+                        <a href={url} rel="noreferrer noopener" target='_blank'>
+                            <img className = "fulldrink-img" src={strDrinkThumb} alt={strDrink}/>
+                        </a>
+                    <div className='drinkInstructions'>
+                        <div>
                         <h3>Ingredients</h3>
-                            {ingredientsArr}
+                        {ingredientsArr}
+                        </div>
+                        <div>
                         <h3>Instructions</h3>
                         <p>{strInstructions}</p>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -71,15 +71,22 @@ const Drinks = () => {
     setFullDrinkCard()
     setDisplayedDrink(``)
   }
-  const renderFullDrink = (drink)=>{
-    if (displayedDrink!==drink.idDrink){
-      setDisplayedDrink(drink.idDrink)
-      setFullDrinkCard(<FullDisplayCard drink={drink} onClick={()=>close()}/>)
-      console.log(fullDrinkCard)
-      console.log(displayedDrink)
+  const renderFullDrink = async (drink)=>{
+    let {idDrink} = drink
+    if(drink.strInstructions){
+      if (displayedDrink!==idDrink){
+        setDisplayedDrink(idDrink)
+        setFullDrinkCard(<FullDisplayCard drink={drink} onClick={()=>close()}/>)
+        console.log(fullDrinkCard)
+        console.log(displayedDrink)
+      }
+    }else{
+      let res = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`)
+      let {drinks}=res.data
+      setDisplayedDrink(drinks[0].idDrink)
+      setFullDrinkCard(<FullDisplayCard drink={drinks[0]} onClick={()=>close()}/>)
     }
-  }
-  
+  }  
   let drinkSearch =  <Search searchType={searchType} placeholder='Enter a search term' inputValue={searchDrinkVal} onChange={onChangeDrink} onSubmit={onSubmitDrink} sent={sent} key='drinksearch' text={`Search by Drink name`}/>
   let ingredientSearch = <Search searchType={searchType} placeholder='Enter comma separated ingredients' inputValue={searchIngVal} onChange={onChangeIng} onSubmit={onSubmitIngredient} sent={sent} key='ingsearch' text={`Search by Ingredients`}/>
   if(drinkArr!==`` && !drinkArr.includes(undefined)){
