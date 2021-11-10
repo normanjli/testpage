@@ -73,12 +73,13 @@ input{
 .login{
   display: flex;
   flex-direction: column;
-  background-color: lightgray;
-  max-width: 80vw;
+  background-color: #c5c5e7c5;
+  width:fit-content;
+  max-width: 100vw;
   padding:10px;
   align-items: center;
   justify-content: space-between;
-  height: 10vh;
+  height: fit-content;
   margin-top: 10px;
   border-radius: 10px;
 }
@@ -151,9 +152,6 @@ input{
   border:none;
 }
 input{
-  border:none;
-}
-input:focus{
   border:none;
 }
 .searchdrinkinput{
