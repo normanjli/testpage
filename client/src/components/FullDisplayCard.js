@@ -7,7 +7,7 @@ const FullDisplayCard = ({drink,onClick}) => {
 
     Object.values(drink).forEach((item, i)=>{
         console.log(item)
-        if (item!==null){
+        if (item!==null && item!==``){
             if (Object.keys(drink)[i].includes(`strIngredient`)){
                 ingredientsArr.push(<li className='ingredient'>{item}</li>)
             }
@@ -31,7 +31,7 @@ const FullDisplayCard = ({drink,onClick}) => {
                         <div>
                         <h3>Instructions</h3>
                         <p>{strInstructions}</p>
-                        </div>
+                    </div>
                     </div>
                 </div>
             </div>

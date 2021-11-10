@@ -23,9 +23,8 @@ const Search = ({searchType, inputValue, onChange, onSubmit, sent, placeholder, 
     }
     return (
         <form className='searchdrink' onSubmit={onSubmit}>
-            <label>{`${text}: `}</label>
-            <input placeholder={placeholder} onChange = {onChange}></input>
-            <input type='submit'value='Search the database'></input>
+            <input className='searchdrinkinput'placeholder={placeholder} onChange = {onChange}></input>
+            <input className='searchBtn'type='submit'value={text}></input>
             <p>{searchingFor}</p>
         </form>
     );

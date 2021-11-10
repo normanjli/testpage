@@ -6,6 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #9FBCA9;
 }
 
 code {
@@ -24,6 +25,7 @@ input{
   max-height: 10em;
   margin-top: 1em;
   margin-bottom: 1em;
+  width:50vw;
 }
 .drink-container{
   max-height: 100vh;
@@ -31,9 +33,10 @@ input{
   display: flex;
   flex-wrap: wrap;
   padding-top: 1vh;
+  margin-bottom: 1em;
 }
 .drinkcard{
-  background-color:gray;
+  background-color:#c5c5e7c5;
   display:flex;
   flex-direction:column;
   align-content: center;
@@ -43,6 +46,11 @@ input{
   padding-bottom: 1em;
   border-radius: 10px;
   margin-top:1em;
+  box-shadow: gray -3px 3px 2px 2px;
+}
+.drinkcard:hover{
+  box-shadow:gray -3px 3px 3px 3px;
+  cursor:pointer;
 }
 .drink-img{
   border-top-left-radius: 10px;
@@ -65,8 +73,8 @@ input{
 .login{
   display: flex;
   flex-direction: column;
-  background-color: gray;
-  max-width: fit-content;
+  background-color: lightgray;
+  max-width: 80vw;
   padding:10px;
   align-items: center;
   justify-content: space-between;
@@ -79,7 +87,7 @@ input{
   display: flex;
 }
 .navbar{
-  background-color: lightblue;
+  background-color: #78BA7F;
   padding: 10px;
   position: fixed top;
   margin-bottom:1em;
@@ -92,12 +100,8 @@ input{
   flex-wrap: wrap;
   -ms-flex-align: center;
 }
-.searchbtn:focus{
-  background:lightblue;
-  border:gray solid 1px;
-}
 .fulldrink{
-  background-color:gray;
+  background-color: #c5c5e7c5;
   display:flex;
   flex-direction: column;
   align-content: center;
@@ -107,17 +111,15 @@ input{
   border-radius: 10px;
   margin:auto;
   margin-top: 1em;
+  box-shadow: gray -3px 3px 2px 1px;
 }
 .fulldrink-img{
   object-fit: contain;
   max-width:100%;
-  height: 30%;
+  max-height: 50vh;
   border: black 1px solid;
   border-radius: 10px;
   margin-right:.5em;
-}
-.fulldrink-img:hover{
-  box-shadow: 5px, 5px, 2px lightblue;
 }
 .fullDrinkDetails{
   margin: .5em;
@@ -137,8 +139,32 @@ input{
   top: 10px;
   right: -45%;
 }
+.closebtn:hover{
+  cursor: pointer;
+}
 .drinkInstructions{
   display: flex;
   width: 50% ;
   margin-left: 2em;
 }
+.searchBtn{
+  border:none;
+}
+input{
+  border:none;
+}
+input:focus{
+  border:none;
+}
+.searchdrinkinput{
+  width: 30vw;
+}
+
+  @media screen and (min-width:992px) {
+    .fulldrink{
+      width: 60vw;
+    }
+    .searchdrink{
+      width: 75vh;
+    }
+  }
