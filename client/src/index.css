@@ -101,6 +101,10 @@ input{
   position: fixed top;
   margin-bottom:1em;
   display: flex;
+  justify-content: space-between;
+}
+.navbar>h1{
+  width: 20em;
 }
 .searchtypebtn{
   display: flex;
@@ -126,16 +130,19 @@ input{
 .fulldrink-img{
   object-fit: contain;
   max-width:100%;
-  max-height: 100%;
+  max-height: 50%;
   border: black 1px solid;
   border-radius: 10px;
-  margin-right:.5em;
 }
 .fullDrinkDetails{
   margin: .5em;
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
+}
+.fullDrinkDetails>a{
+  max-width:fit-content;
+  max-height: fit-content;
 }
 .ingredient{
   margin-left: 1em;
@@ -155,8 +162,8 @@ input{
 }
 .drinkInstructions{
   display: flex;
+  max-width: 50%;
   max-height: 50vh;
-  width: 50% ;
   margin-left: 1em;
   font-size: 1em;
   gap:1em;
@@ -164,8 +171,9 @@ input{
 .drinkInstructions>div{
   overflow: scroll;
   max-width: 50%;
-  max-height: 30%; /* IE and Edge */
-  scrollbar-width: none; 
+  max-height: 40vw; /* IE and Edge */
+  scrollbar-width: none;
+  align-self: flex-start; 
 }
 .drinkInstructions>div>p{
   max-height: 40vh;
@@ -184,7 +192,6 @@ input{
   padding-top: 1vh;
   display: contents;
 }
-
   @media screen and (min-width:992px) {
     .fulldrink{
       width: 70vw;
