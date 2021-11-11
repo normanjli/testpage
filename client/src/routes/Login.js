@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Navbar from '../components/NavBar/Navbar';
 const Login = () => {
     // const [user, setUser] = useState({
     //     username: '',
@@ -8,6 +8,7 @@ const Login = () => {
 
     return (
         <div>
+            <Navbar title='Login to your account'/>
             <form className='login'>
                 <h1>TODO make it go boom</h1>
                 <div>

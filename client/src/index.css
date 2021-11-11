@@ -47,6 +47,7 @@ input{
   border-radius: 10px;
   margin-top:1em;
   box-shadow: gray -3px 3px 2px 2px;
+  font-size: 100%;
 }
 .drinkcard:hover{
   box-shadow:gray -3px 3px 3px 3px;
@@ -62,9 +63,17 @@ input{
 .hide{
   display: none;
 }
+.responsive{
+  max-width: 500em;
+  width:10em;
+  height:1.5em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 1vh;
+}
 .links{
-  max-width: 30em;
-  width:auto;
+  width: 10em;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -92,6 +101,7 @@ input{
   padding: 10px;
   position: fixed top;
   margin-bottom:1em;
+  display: flex;
 }
 .searchtypebtn{
   display: flex;
@@ -114,6 +124,7 @@ input{
   margin-top: 1em;
   box-shadow: gray -3px 3px 2px 1px;
 }
+
 .fulldrink-img{
   object-fit: contain;
   max-width:100%;
@@ -126,13 +137,12 @@ input{
   margin: .5em;
   display: flex;
   justify-content: space-evenly;
-  align-content: center;
 }
 .ingredient{
+  margin-left: 1em;
   text-align: left;
 }
 .closebtn {
-  text-decoration: underline;
   position: relative;
   float: right;
   background: none;
@@ -141,12 +151,19 @@ input{
   right: -45%;
 }
 .closebtn:hover{
+  text-decoration: underline;
   cursor: pointer;
 }
 .drinkInstructions{
   display: flex;
+  max-height: 50%;
   width: 50% ;
-  margin-left: 2em;
+  margin-left: 1em;
+  font-size: 1em;
+  gap:1em;
+}
+.drinkInstructions>p{
+  text-align: left;
 }
 .searchBtn{
   border:none;
@@ -157,12 +174,33 @@ input{
 .searchdrinkinput{
   width: 30vw;
 }
-
+.icon{
+  padding-top: 1vh;
+  display: contents;
+}
   @media screen and (min-width:992px) {
     .fulldrink{
-      width: 60vw;
+      width: 70vw;
     }
     .searchdrink{
       width: 75vh;
+    }
+    .icon{
+      display: none;
+    }
+    .links{
+      display:none;
+    }
+
+  }
+  @media screen and (max-width:992px) {
+    .responsive{
+      display: none;
+    }
+    .drinkInstructions{
+      font-size: 2vw;
+    }
+    .navbar{
+      justify-content: space-between;
     }
   }

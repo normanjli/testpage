@@ -15,7 +15,6 @@ const FullDisplayCard = ({drink,onClick}) => {
     })
     console.log(ingredientsArr)
     return (
-        <div>
             <div className='fulldrink'>
                     <button className='closebtn' onClick={onClick}>x</button>
                     <h1 className="drinkName">{strDrink}</h1>
@@ -35,7 +34,6 @@ const FullDisplayCard = ({drink,onClick}) => {
                     </div>
                 </div>
             </div>
-        </div>
     );
 };
 

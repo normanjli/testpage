@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/NavBar/Navbar';
 import Login from './routes/Login';
 import Home from './routes/Home';
 import Drinks from './routes/Drinks';
@@ -11,7 +10,6 @@ ReactDOM.render(
   <>
   <div className='content'>
     <Router>
-      <Navbar/>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/login' element={<Login/>}/>
