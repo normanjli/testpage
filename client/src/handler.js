@@ -7,7 +7,7 @@ const handler ={
             if (drinkDict[currentDrink.idDrink]===undefined){
                 drinkDict[currentDrink.idDrink] = [currentDrink,1]
             }else{
-                let a , count
+                // let a , count
                 [a, count] = drinkDict[currentDrink.idDrink]
                 drinkDict[currentDrink.idDrink] = [a,++count]
             }
