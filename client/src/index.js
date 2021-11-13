@@ -2,22 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './routes/Login';
-import Home from './routes/Home';
-import Drinks from './routes/Drinks';
+import App from "./App"
 ReactDOM.render(
-  <>
-  <div className='content'>
-    <Router>
-      <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/drinks' element={<Drinks/>}/>
-      </Routes>
-    </Router>
-  </div>
-</>
+  <App/>
     ,
   document.getElementById("root")
 );

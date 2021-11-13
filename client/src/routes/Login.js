@@ -1,24 +1,23 @@
 import React from 'react';
 import Navbar from '../components/NavBar/Navbar';
+import {useForm} from 'react-hook-form'
 const Login = () => {
-    // const [user, setUser] = useState({
-    //     username: '',
-    //     password: ''
-    // })
-
+    const { register, handleSubmit, watch, formState: { errors }, validate } = useForm();
+    const onSubmit = data =>console.log(data)
     return (
         <div>
             <Navbar title='Login to your account'/>
-            <form className='login'>
-                <h1>TODO make it go boom</h1>
+            <form onSubmit={handleSubmit(onSubmit)} className='login'>
                 <div>
                     <label>Username </label>
-                    <input id='username' type='text' placeholder='Username'></input>
+                    <input {...register("username",{required:true})} type='text' placeholder='Username'></input>
                 </div>
+                {errors.username && <span>This field is required</span>}
                 <div>
                     <label>Password </label>
-                    <input id='password' type='password' placeholder='Password'></input>
+                    <input {...register("password",{required:true})} id='password' type='password' placeholder='Password'></input>
                 </div>
+                {errors.password && <span>This field is required</span>}
                 <div className='loginbtns'><button>Login</button><button>Create User</button></div>
             </form>
         </div>

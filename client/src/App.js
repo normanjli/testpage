@@ -1,17 +1,15 @@
 import './App.css';
 import React from 'react'
-import Navbar from './components/NavBar/Navbar';
-import Login from './components/Login/Login';
-import Home from './components/home/Home';
-import Drinks from './components/drinks/Drinks';
+import Login from './routes/Login';
+import Home from './routes/Home';
+import Drinks from './routes/Drinks';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-//TODO useeffect hook
+
 
 function App() {
   
   return (
     <>
-      <Navbar/>
       <div className='content'>
         <Router>
           <Routes>
