@@ -150,7 +150,6 @@ input{
 
 .ingredient{
   text-align: left;
-  margin-left: -1em;
 }
 .closebtn {
   position: relative;
@@ -167,16 +166,16 @@ input{
 .drinkInstructions{
   display: flex;
   max-width: 50%;
-  margin-left: 1em;
   font-size: 1em;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .drinkInstructions>div{
   max-width: 50%;
   height:35vw;
-  max-height: 90vh; /* IE and Edge */
+  max-height: 90vh;
   margin-top: 1em;
   align-self: flex-start;
+  text-align: left;
 }
 .drinkInstructions>div>p{
   overflow: scroll;
