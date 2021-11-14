@@ -29,7 +29,6 @@ const Drinks = () => {
       .then((res) => {
         let { drinks } = res.data;
         drinks ? setDrink(drinks) : setSent(true);
-        console.log(drinks);
       });
   };
   const onSubmitDrink = (event) => {
@@ -93,8 +92,6 @@ const Drinks = () => {
         setFullDrinkCard(
           <FullDisplayCard drink={drink} onClick={() => close()} />
         );
-        console.log(fullDrinkCard);
-        console.log(displayedDrink);
       }
     } else {
       let res = await axios.get(

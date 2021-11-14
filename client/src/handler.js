@@ -11,7 +11,6 @@ const handler ={
                 drinkDict[currentDrink.idDrink] = [a,++count]
             }
         }
-        console.log(drinkDict)
         Object.keys(drinkDict)
             .map((i)=> [+i, drinkDict[i]])
             .sort((firstDrink, secondDrink)=>secondDrink[1][1]-firstDrink[1][1])

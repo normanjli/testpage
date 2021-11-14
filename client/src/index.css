@@ -138,9 +138,9 @@ input{
 .fullDrinkDetails{
   margin: .5em;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: flex-start;
-  gap:2em;
+  gap:1em;
   max-height: fit-content;
 }
 .fullDrinkDetails>a{

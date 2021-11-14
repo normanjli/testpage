@@ -4,16 +4,13 @@ const FullDisplayCard = ({drink,onClick}) => {
     let {strDrinkThumb, strDrink, idDrink, strInstructions} = drink
     let url=`https://www.thecocktaildb.com/drink/${idDrink}`
     let ingredientsArr = []
-
     Object.values(drink).forEach((item, i)=>{
-        console.log(item)
         if (item!==null && item!==``){
             if (Object.keys(drink)[i].includes(`strIngredient`)){
-                ingredientsArr.push(<li className='ingredient'>{item}</li>)
+                ingredientsArr.push(<li className='ingredient' key={i}>{item}</li>)
             }
         }
     })
-    console.log(ingredientsArr)
     return (
             <div className='fulldrink'>
                     <button className='closebtn' onClick={onClick}>x</button>
