@@ -6,9 +6,9 @@ const Navbar = ({title}) => {
         return clicked?setClicked(false):setClicked(true)
     }
     const links = [
-    <Link to='/'>Home</Link>,
+    <Link key='home' to='/'>Home</Link>,
     // <Link to='/login'>Login</Link>,
-    <Link to='/drinks'>Drinks</Link>
+    <Link key='drink'to='/drinks'>Drinks</Link>
 ]
     return (
         <nav className='navbar'>

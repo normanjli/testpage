@@ -1,6 +1,6 @@
 const handler ={
 
-    drinkArrayHandler:(drinksArr)=>{//O(5n) runtime
+    drinkArrayHandler:(drinksArr)=>{//O(5nlogn) runtime
         let ans = []
         let drinkDict ={}
         for (let currentDrink of drinksArr){

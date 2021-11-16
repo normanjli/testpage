@@ -1,25 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/NavBar/Navbar';
-import {useForm} from 'react-hook-form'
+// import {useForm} from 'react-hook-form'
+import axios from 'axios'
+import CreateAcct from '../components/createAcct';
+import LoginEle from '../components/LoginEle';
+
 const Login = () => {
-    const { register, handleSubmit, watch, formState: { errors }, validate } = useForm();
-    const onSubmit = data =>console.log(data)
+    const onCreate = (data) =>{
+        axios.post(`/createacct`, data)
+    }
+    const onLogin = (data) =>{
+        axios.post(`/login/auth`, data)
+    }    
+    const [loginOrCreate, setLoginOrCreate] = useState(<LoginEle onSubmit={onLogin} onClick={(e)=>changeType(e)}/>)
+    const changeType = (event) =>{
+        event.preventDefault()
+        console.log(event.target.value)
+        return event.target.value==='login'?setLoginOrCreate(<LoginEle onSubmit={onLogin} onClick={(e)=>changeType(e)}/>):setLoginOrCreate(<CreateAcct onSubmit={onCreate} onClick={(e)=>changeType(e)}/>);
+    }
     return (
         <div>
             <Navbar title='Login to your account'/>
-            <form onSubmit={handleSubmit(onSubmit)} className='login'>
-                <div>
-                    <label>Username </label>
-                    <input {...register("username",{required:true})} type='text' placeholder='Username'></input>
-                </div>
-                {errors.username && <span>This field is required</span>}
-                <div>
-                    <label>Password </label>
-                    <input {...register("password",{required:true})} id='password' type='password' placeholder='Password'></input>
-                </div>
-                {errors.password && <span>This field is required</span>}
-                <div className='loginbtns'><button>Login</button><button>Create User</button></div>
-            </form>
+            {loginOrCreate}
         </div>
     );
 };

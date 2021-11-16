@@ -74,8 +74,6 @@ const Drinks = () => {
         }
       }
       const ans = handler.drinkArrayHandler(drinksArr);
-      // const ans = handler.shortenedArrayHandler(drinksArr)
-      // console.log(ans)
       ans ? setDrink(ans) : setSent(true);
     }
   };

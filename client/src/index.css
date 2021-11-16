@@ -19,6 +19,10 @@ code {
 }
 input{
   text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 90%;
 }
 .searchdrink{
   height:auto;
@@ -92,9 +96,13 @@ input{
   margin-top: 10px;
   border-radius: 10px;
 }
+.login>span{
+  font-size: 80%;
+}
 .loginbtns{
-  width: 80%;
+  width: 90%;
   display: flex;
+  margin-top: .2em;
 }
 .navbar{
   background-color: #78BA7F;
