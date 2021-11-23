@@ -64,7 +64,7 @@ passport.use(
         }
         return done(null, user.id);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => done(err));
   })
 );
 passport.serializeUser(function (user, done) {

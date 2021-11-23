@@ -16,7 +16,6 @@ const Login = () => {
         navigate(`/user`, { replace: true });
       }return
     } catch (error) {
-      console.log(error)
       return setMessage(error.response);
     }
   };

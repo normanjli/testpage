@@ -33,7 +33,6 @@ module.exports = {
   },
   changeUser: async (req, res) => {
     const { newUsername, oldPassword, new_password } = req.body.data;
-    console.log(req.user, req.session.passport, req.session,req.isAuthenticated())
     if (newUsername !== `` || new_password !== ``) {
       const user = await User.findOne({ where: { id: req.user } });
       const hashedPassword = bcrypt.hashSync(oldPassword, user.salt);
