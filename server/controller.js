@@ -18,7 +18,6 @@ const bcrypt = require(`bcryptjs`);
 module.exports = {
   createUser: async (req, res) => {
     const { username, password } = req.body;
-    console.log(req.body);
     if (await User.findOne({ where: { username: username } })) {
       return console.log(`dont do that`);
     } else {

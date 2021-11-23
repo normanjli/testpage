@@ -41,7 +41,6 @@ const Login = () => {
   );
   const changeType = (event) => {
     event.preventDefault();
-    console.log(event.target.value);
     setMessage(``)
     return event.target.value === "login"
       ? setLoginOrCreate(

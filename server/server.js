@@ -84,7 +84,6 @@ app.get("/api/logout", async (req, res) => {
   res.status(`200`).send(`logout successful`);
 });
 app.get(`/api/user`, async (req, res) => {
-  console.log(req.sessionID);
   if (!req.user) {
     res.status(404).send(`User Not found`);
   } else {
