@@ -5,7 +5,7 @@ import Search from "../components/search/search";
 import Button from "../components/button/Button";
 import FullDisplayCard from "../components/FullDisplayCard";
 import handler from "../handler";
-import Navbar from "../components/NavBar/Navbar";
+
 
 const Drinks = () => {
   const [searchDrinkVal, setSearchDrinkVal] = useState("");
@@ -139,7 +139,6 @@ const Drinks = () => {
   }
   return (
     <>
-      <Navbar title="Find Drinks" />
       <div className="searchtypebtn">
         <Button
           className="searchbtn"

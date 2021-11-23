@@ -1,25 +1,30 @@
 import './App.css';
 import React from 'react'
-// import Login from './routes/Login';
+import Login from './routes/Login';
 import Home from './routes/Home';
 import Drinks from './routes/Drinks';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/NavBar/Navbar';
+import Logout from './routes/Logout';
+import User from './routes/User';
 
 
-function App() {
-  
+const App=()=> {
   return (
-    <>
       <div className='content'>
         <Router>
+        <Navbar/>
+        <div className='pages'>
           <Routes>
             <Route path='/' element={<Home/>}/>
-            {/* <Route path='/login' element={<Login/>}/> */}
+            <Route path='/login' element={<Login/>}/>
             <Route path='/drinks' element={<Drinks/>}/>
+            <Route path='/user' element={<User/>}/>
+            <Route path='/logout' element={<Logout/>}/>
           </Routes>
+          </div>
         </Router>
       </div>
-    </>
   );
 }
 

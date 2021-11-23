@@ -1,37 +1,36 @@
-
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #9FBCA9;
+  background-color: #9fbca9;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-*{
+* {
   text-align: center;
-  margin:auto;
+  margin: auto;
 }
-input{
+input {
   text-align: left;
   display: flex;
   align-items: center;
   justify-content: space-between;
   max-width: 90%;
 }
-.searchdrink{
-  height:auto;
+.searchdrink {
+  height: auto;
   max-height: 10em;
   margin-top: 1em;
   margin-bottom: 1em;
-  width:50vw;
+  width: 50vw;
 }
-.drink-container{
+.drink-container {
   max-height: 100vh;
   max-width: 100vw;
   display: flex;
@@ -39,124 +38,128 @@ input{
   padding-top: 1vh;
   margin-bottom: 1em;
 }
-.drinkcard{
-  background-color:#c5c5e7c5;
-  display:flex;
-  flex-direction:column;
+.drinkcard {
+  background-color: #c5c5e7c5;
+  display: flex;
+  flex-direction: column;
   align-content: center;
-  width:auto;
+  width: auto;
   max-width: 30vh;
   max-height: fit-content;
   padding-bottom: 1em;
   border-radius: 10px;
-  margin-top:1em;
+  margin-top: 1em;
   box-shadow: gray -3px 3px 2px 2px;
 }
-.drinkcard:hover{
-  box-shadow:gray -3px 3px 3px 3px;
-  cursor:pointer;
+.drinkcard:hover {
+  box-shadow: gray -3px 3px 3px 3px;
+  cursor: pointer;
 }
-.drink-img{
+.drink-img {
   border-top-left-radius: 10px;
-  border-top-right-radius:10px ;
-  padding-bottom: .25em;
-  object-fit:contain;
-  max-width:100%;
+  border-top-right-radius: 10px;
+  padding-bottom: 0.25em;
+  object-fit: contain;
+  max-width: 100%;
 }
-.hide{
+.hide {
   display: none;
 }
-.responsive{
+.responsive {
   max-width: 500em;
-  width:10em;
-  height:1.5em;
+  width: fit-content;
+  gap: 1em;
+  height: 1.5em;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding-top: 1vh;
 }
-.links{
-  width: 10em;
+.links {
+  height: fit-content;
+  width: 3.2em;
+  flex-direction: column;
+  gap: 0.25em;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
+  text-align: left;
   padding-top: 1vh;
+  padding: 0.2em;
 }
-.login{
+.links > div {
+  background-color: #78ba7f;
+  position: fixed;
+  top: 2.5em;
+  display: flex;
+  flex-direction: column;
+  border: solid black 1px;
+  padding: 0.2em;
+}
+.login {
   display: flex;
   flex-direction: column;
   background-color: #c5c5e7c5;
-  width:fit-content;
+  width: fit-content;
   max-width: 100vw;
-  padding:10px;
+  padding: 10px;
   align-items: center;
   justify-content: space-between;
-  gap:.5em;
+  gap: 0.5em;
   height: fit-content;
   margin-top: 10px;
   border-radius: 10px;
 }
-.login>span{
+.login > span {
   font-size: 80%;
 }
-.loginbtns{
+.loginbtns {
   width: 90%;
   display: flex;
-  margin-top: .2em;
+  margin-top: 0.2em;
 }
-.navbar{
-  background-color: #78BA7F;
-  padding: 10px;
-  position: fixed top;
-  margin-bottom:1em;
-  display: flex;
-  justify-content: space-between;
-}
-.navbar>h1{
-  width: 20em;
-}
-.searchtypebtn{
+.searchtypebtn {
   display: flex;
   max-width: 20em;
-  width:auto;
+  width: auto;
   justify-content: space-between;
   flex-wrap: wrap;
   -ms-flex-align: center;
 }
-.fulldrink{
+.fulldrink {
   background-color: #c5c5e7c5;
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-content: center;
-  width:80vw;
+  width: 80vw;
   max-width: fit-content;
   max-height: fit-content;
   border-radius: 10px;
-  margin:auto;
+  margin: auto;
   margin-top: 1em;
   box-shadow: gray -3px 3px 2px 1px;
 }
-.fulldrink-img{
+.fulldrink-img {
   object-fit: contain;
-  max-width:100%;
+  max-width: 100%;
   max-height: 90vh;
   border: black 1px solid;
   border-radius: 10px;
 }
-.fullDrinkDetails{
-  margin: .5em;
+.fullDrinkDetails {
+  margin: 0.5em;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap:1em;
+  gap: 1em;
   max-height: fit-content;
 }
-.fullDrinkDetails>a{
-  max-width:fit-content;
+.fullDrinkDetails > a {
+  max-width: fit-content;
   max-height: fit-content;
 }
 
-.ingredient{
+.ingredient {
   text-align: left;
 }
 .closebtn {
@@ -167,66 +170,83 @@ input{
   top: 10px;
   right: -45%;
 }
-.closebtn:hover{
+.closebtn:hover {
   text-decoration: underline;
   cursor: pointer;
 }
-.drinkInstructions{
+.drinkInstructions {
   display: flex;
   max-width: 50%;
   font-size: 1em;
   justify-content: space-around;
 }
-.drinkInstructions>div{
+.drinkInstructions > div {
   max-width: 50%;
-  height:35vw;
+  height: 35vw;
   max-height: 90vh;
   margin-top: 1em;
   align-self: flex-start;
   text-align: left;
 }
-.drinkInstructions>div>p{
+.drinkInstructions > div > p {
   overflow: scroll;
   max-height: 85%;
   text-align: left;
   scrollbar-width: none;
 }
-.searchBtn{
-  border:none;
+.searchBtn {
+  border: none;
 }
-input{
-  border:none;
+input {
+  border: none;
 }
-.searchdrinkinput{
+.searchdrinkinput {
   width: 30vw;
 }
-.icon{
+.icon {
   padding-top: 1vh;
   display: contents;
 }
-  @media screen and (min-width:992px) {
-
-    .searchdrink{
-      width: 75vw;
-    }
-    .icon{
-      display: none;
-    }
-    .links{
-      display:none;
-    }
+.navbar {
+  background-color: #78ba7f;
+  padding: 10px;
+  height: 2em;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.navbar > h1 {
+  width: fit-content;
+}
+.pages {
+  margin-top: 5em;
+}
+@media screen and (min-width: 992px) {
+  .searchdrink {
+    width: 75vw;
   }
-  @media screen and (max-width:991px) {
-    .responsive{
-      display: none;
-    }
-    .drinkInstructions{
-      font-size: 2vw;
-    }
-    .navbar{
-      justify-content: space-between;
-    }
-    .drinkname{
-      font-size: 2vh;
-    }
+  .icon {
+    display: none;
   }
+  .links {
+    display: none;
+  }
+}
+@media screen and (max-width: 991px) {
+  .responsive {
+    display: none;
+  }
+  .drinkInstructions {
+    font-size: 2vw;
+  }
+  .navbar {
+    justify-content: space-between;
+  }
+  .drinkname {
+    font-size: 2vh;
+  }
+}
