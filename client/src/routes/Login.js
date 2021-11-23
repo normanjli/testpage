@@ -13,7 +13,6 @@ const Login = () => {
       let res = await axios.post(`/api/createacct`, data);
       if (+res.status === 200) {
         setMessage(`Account created! Please login`);
-        navigate(`/user`, { replace: true });
       }return
     } catch (error) {
       return setMessage(error.response);
