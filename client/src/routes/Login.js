@@ -5,43 +5,40 @@ import LoginEle from "../components/LoginEle";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [message, setMessage]=useState(``)
+  const [message, setMessage] = useState(``);
   const navigate = useNavigate();
   const onCreate = async (data) => {
-    try{
-      setMessage(`Creating Account`)
-      let res= await axios.post(`/api/createacct`, data);
-      if (+res.status===200){
-        setMessage(`Account created! Please login`)
-        navigate(`/user`, {replace:true})
-      }else{
-        throw res.status
-      }
-    }catch(error){
-      setMessage(`Could not create Account`)
+    try {
+      setMessage(`Creating Account`);
+      let res = await axios.post(`/api/createacct`, data);
+      if (+res.status === 200) {
+        setMessage(`Account created! Please login`);
+        navigate(`/user`, { replace: true });
+      }return
+    } catch (error) {
+      console.log(error)
+      return setMessage(error.response);
     }
   };
   const onLogin = async (data) => {
-    try{
-      setMessage(`Attempting login`)
+    try {
+      setMessage(`Attempting login`);
       let res = await axios.post(`/api/login/auth`, data);
-      if(+res.status===200){
-        setMessage(`Login Successful`)
-        navigate("/", { replace: true })
-      }else{
-        throw res.status
+      if (+res.status === 200) {
+        localStorage.setItem(`username`, res.data);
+        setMessage(`Login Successful`);
+        navigate("/", { replace: true });
       }
-    } catch(error) {
-      setMessage(`Login Failed`)
+    } catch (error) {
+      setMessage(`Login Failed`);
     }
-    
   };
   const [loginOrCreate, setLoginOrCreate] = useState(
     <LoginEle onSubmit={onLogin} onClick={(data, e) => changeType(data, e)} />
   );
   const changeType = (event) => {
     event.preventDefault();
-    setMessage(``)
+    setMessage(``);
     return event.target.value === "login"
       ? setLoginOrCreate(
           <LoginEle onSubmit={onLogin} onClick={(data) => changeType(data)} />
@@ -55,7 +52,9 @@ const Login = () => {
   };
   return (
     <div>
-      <p>{message}</p>
+      <div style={{ height: 3 + `em`, textAlign: `center` }}>
+        <h1>{message}</h1>
+      </div>
       {loginOrCreate}
     </div>
   );

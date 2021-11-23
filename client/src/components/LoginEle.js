@@ -9,7 +9,7 @@ const LoginEle = ({ onSubmit, onClick }) => {
   } = useForm();
   return (
     <div>
-      <h2>Login</h2>
+      <h2>Login to your account</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="login">
         <div>
           <label>Username </label>
@@ -37,7 +37,7 @@ const LoginEle = ({ onSubmit, onClick }) => {
         )}
         <div className="loginbtns">
           <button type="submit">Login</button>
-          <button onClick={onClick} value="create">
+          <button className='change' style={{backgroundColor:'unset',border:'unset'}}  onClick={onClick} value="create">
             Create User
           </button>
         </div>

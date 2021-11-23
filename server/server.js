@@ -11,7 +11,7 @@ const bcrypt = require(`bcryptjs`);
 const app = express();
 const session = require(`express-session`);
 const SequelizeStore = require(`connect-session-sequelize`)(session.Store);
-const { createUser,changeUser } = require("./controller");
+const { createUser, changeUser, deleteUser } = require("./controller");
 const { Sequelize, DataTypes } = require(`sequelize`);
 const sequelize = new Sequelize(DATABASE_URL, {
   dialect: `postgres`,
@@ -50,6 +50,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 const LocalStrategy = require(`passport-local`).Strategy;
+const user = require("../models/user");
 passport.use(
   new LocalStrategy(async function (username, password, done) {
     User.findOne({ where: { username: username } })
@@ -75,8 +76,9 @@ passport.deserializeUser(function (user, done) {
 
 app.post("/api/createacct", createUser);
 
-app.post(`/api/login/auth`, passport.authenticate(`local`), (req, res) => {
-  res.status(`200`).send(`success`);
+app.post(`/api/login/auth`, passport.authenticate(`local`), async (req, res) => {
+  let user = await User.findOne({where:{id:req.user}})
+  res.status(`200`).send(user.username);
 });
 
 app.get("/api/logout", async (req, res) => {
@@ -84,16 +86,17 @@ app.get("/api/logout", async (req, res) => {
   res.status(`200`).send(`logout successful`);
 });
 app.get(`/api/user`, async (req, res) => {
-  if (!req.user) {
-    res.status(404).send(`User Not found`);
+  if (req.isAuthenticated()) {
+    res.status(200).send(`Authenticated`);
   } else {
-    const user = await User.findOne({ where: { id: req.user } });
-    res.status(200).send(user.username.toString());
+    res.status(404).send(`User Not found`);
   }
 });
-app.put(`/api/user/change`, changeUser);
+app.put(`/api/user/change`, (req,res)=>{
+  changeUser(req,res)
+});
 
-app.delete(`/api/user/delete`, async (req, res) => {});
+app.delete(`/api/user/delete`, deleteUser);
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
 });

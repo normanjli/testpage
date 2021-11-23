@@ -5,6 +5,7 @@ import axios from "axios";
 const Links = () => {
   const navigate = useNavigate();
   const logout = async () => {
+    localStorage.removeItem(`username`)
     await axios.get(`/api/logout`,{withCredentials:true});
     setTimeout(() => navigate("/", { replace: true }), 1000);
   };

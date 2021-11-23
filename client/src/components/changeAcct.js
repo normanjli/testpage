@@ -81,7 +81,7 @@ const ChangeAcct = ({ onSubmit, onClick }) => {
         )}
         <div className="loginbtns">
           <button type="submit">Change User Info</button>
-          <button onClick={onClick} value="delete">
+          <button onClick={handleSubmit(onClick)} value="delete">
             Delete Account
           </button>
         </div>

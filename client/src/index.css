@@ -118,6 +118,12 @@ input {
   display: flex;
   margin-top: 0.2em;
 }
+.change{
+  padding:.3em;
+}
+.change:hover{
+  text-decoration: underline;
+}
 .searchtypebtn {
   display: flex;
   max-width: 20em;

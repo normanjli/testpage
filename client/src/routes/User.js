@@ -3,13 +3,12 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import ChangeAcct from "../components/changeAcct";
 const User = () => {
-  const [message, setMessage] = useState(`Getting User Info...`);
+  const [message, setMessage] = useState(``);
   const navigate = useNavigate();
-  const getUname = useCallback(async () => {
-    try {
-      let res = await axios.get(`/api/user`, { withCredentials: true });
-      setMessage(`Welcome ${res.data}`);
-    } catch (res) {
+  const getUname = useCallback( () => {
+      if (localStorage.getItem(`username`)!==null){
+        setMessage(`Welcome ${localStorage.getItem(`username`)}`);
+      } else{
       setMessage(
         `Please login first! Automatically redirecting you to login page...`
       );
@@ -25,7 +24,11 @@ const User = () => {
         { withCredentials: true }
       );
       if (+res.status === 200) {
-        setMessage(`Successfully changed info`);
+        if(res.data !== `success`){
+          localStorage.removeItem(`username`)
+          localStorage.setItem(`username`,res.data)
+        }
+        setMessage(`Successfully changed info, ${res.data}`);
       }
       return;
     } catch (error) {
@@ -39,16 +42,14 @@ const User = () => {
     }
   };
   const deleteAcct = async (data) => {
-    if (window.confirm(`Are you sure you want to delete your Account?`)) {
+    if (window.confirm(`Are you sure you want to delete your Account, ${localStorage.getItem(`username`)}? Your account data will be unrecoverable`)) {
       try {
-        let res = await axios.delete(`/api/user/delete`, {
-          withCredentials: true,
-        });
-        if (res.status !== 200) {
-          throw res.status;
-        }
+        let res = await axios.delete(`/api/user/delete`, {data});
+        setMessage(res.data)
+        localStorage.removeItem(`username`)
+        setTimeout(()=>navigate(`/`,{replace:true}),1000)
       } catch (error) {
-        console.log(error);
+        setMessage(error.response.data);
       }
     }
   };

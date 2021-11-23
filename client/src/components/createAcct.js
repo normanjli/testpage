@@ -59,10 +59,10 @@ const CreateAcct = ({ onSubmit, onClick }) => {
           <span>Passwords Must Match</span>
         )}
         <div className="loginbtns">
-          <button onClick={onClick} value="login">
+          <button type="submit">Create User</button>
+          <button className='change' style={{backgroundColor:'unset',border:'unset'}} onClick={onClick} value="login">
             Login
           </button>
-          <button type="submit">Create User</button>
         </div>
       </form>
     </div>
