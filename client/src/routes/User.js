@@ -58,7 +58,6 @@ const User = () => {
       <div style={{ height: 3 + `em`, textAlign: `center` }}>
         <h1>{message}</h1>
       </div>
-      <button onClick={changeInfoShow}>Change Account info</button>
       <ChangeAcct onSubmit={changeInfo} onClick={deleteAcct} />
     </div>
   );
