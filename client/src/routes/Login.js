@@ -3,7 +3,7 @@ import axios from "axios";
 import CreateAcct from "../components/createAcct";
 import LoginEle from "../components/LoginEle";
 import { useNavigate } from "react-router-dom";
-
+import Navbar from "../components/NavBar/Navbar";
 const Login = () => {
   const [message, setMessage] = useState(``);
   const navigate = useNavigate();
@@ -13,7 +13,8 @@ const Login = () => {
       let res = await axios.post(`/api/createacct`, data);
       if (+res.status === 200) {
         setMessage(`Account created! Please login`);
-      }return
+      }
+      return;
     } catch (error) {
       return setMessage(error.response);
     }
@@ -49,12 +50,13 @@ const Login = () => {
         );
   };
   return (
-    <div>
-      <div style={{ height: 3 + `em`, textAlign: `center` }}>
+    <>
+      <Navbar title='Login to your account' />
+      <div style={{ height: 3 + `em`, textAlign: `center`, marginTop:'5em'}}>
         <h1>{message}</h1>
       </div>
       {loginOrCreate}
-    </div>
+    </>
   );
 };
 

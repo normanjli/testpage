@@ -1,10 +1,11 @@
 import React from "react";
-
+import Navbar from "../components/NavBar/Navbar";
 const Logout = () => {
   return (
-    <div>
+    <>
+              <Navbar title='Welcome to the drink getter'/>
       <h1>Logging you out</h1>
-    </div>
+    </>
   );
 };
 

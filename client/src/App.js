@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react'
+import {React,useEffect,useState} from 'react'
 import Login from './routes/Login';
 import Home from './routes/Home';
 import Drinks from './routes/Drinks';
@@ -13,8 +13,6 @@ const App=()=> {
   return (
       <div className='content'>
         <Router>
-        <Navbar/>
-        <div className='pages'>
           <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/login' element={<Login/>}/>
@@ -22,7 +20,6 @@ const App=()=> {
             <Route path='/user' element={<User/>}/>
             <Route path='/logout' element={<Logout/>}/>
           </Routes>
-          </div>
         </Router>
       </div>
   );

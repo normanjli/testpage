@@ -88,6 +88,7 @@ module.exports = {
       return res.status(401).send(`Enter correct password to delete account`);
     }else {
       await User.destroy({ where: { id: req.user } })
+      req.session.destroy(err=>console.log(err))
       res.status(200).send(`Account Successfully deleted`)
     }
   },

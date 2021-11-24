@@ -82,6 +82,7 @@ app.post(`/api/login/auth`, passport.authenticate(`local`), async (req, res) => 
 });
 
 app.get("/api/logout", async (req, res) => {
+  req.session.destroy(err=>console.log(err))
   req.logOut();
   res.status(`200`).send(`logout successful`);
 });

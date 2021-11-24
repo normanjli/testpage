@@ -96,6 +96,9 @@ input {
   border: solid black 1px;
   padding: 0.2em;
 }
+.links>div>a{
+  padding:.5em
+}
 .login {
   display: flex;
   flex-direction: column;
@@ -131,6 +134,7 @@ input {
   justify-content: space-between;
   flex-wrap: wrap;
   -ms-flex-align: center;
+  margin-top: 5em;
 }
 .fulldrink {
   background-color: #c5c5e7c5;
@@ -254,5 +258,15 @@ input {
   }
   .drinkname {
     font-size: 2vh;
+  }
+}
+@media screen and (max-width: 660px) {
+  .navbar {
+    justify-content: space-between;
+    flex-direction: column;
+    height:fit-content;
+  }
+  .links > div {
+    top: 3.75em;
   }
 }

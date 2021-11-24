@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import ChangeAcct from "../components/changeAcct";
+import Navbar from "../components/NavBar/Navbar";
 const User = () => {
   const [message, setMessage] = useState(``);
   const navigate = useNavigate();
@@ -55,12 +56,13 @@ const User = () => {
   };
   useEffect(() => getUname(), [getUname]);
   return (
-    <div>
-      <div style={{ height: 3 + `em`, textAlign: `center` }}>
-        <h1>{message}</h1>
+    <>
+            <Navbar title='Profile Page'/>
+      <div style={{ height: 'fit-content', textAlign: `center`, marginTop:'5em' }}>
+        <h2>{message}</h2>
       </div>
       <ChangeAcct onSubmit={changeInfo} onClick={deleteAcct} />
-    </div>
+    </>
   );
 };
 

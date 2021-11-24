@@ -1,19 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Links from "../Links/Links";
-const Navbar = () => {
-  const [title, setTitle] = useState(``);
+const Navbar = ({title}) => {
   const [displayed, setDisplayed] = useState(false);
-  const [url, setUrl] = useState(window.location.href);
-  useEffect(() => {
-    setUrl(window.location.href);
-    if (url.includes("login")) {
-        setTitle("Login to your account");
-    } else if (url.includes("drinks")) {
-        setTitle("Search for Drinks");
-    } else {
-        setTitle(`Welcome to the drink getter`);
-    }
-  }, [url]);
   const clickHandler = () => {
     displayed
       ? setDisplayed(false)
