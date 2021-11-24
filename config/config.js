@@ -1,16 +1,15 @@
-
 module.exports = {
   development: {
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
-    dialect: 'postgres',
+    dialect: "postgres",
     dialectOptions: {
       ssl: {
         require: true,
-        rejectUnauthorized: false // <<<<<<< YOU NEED THIS
-      }
+        rejectUnauthorized: false, // <<<<<<< YOU NEED THIS
+      },
     },
   },
   test: {
@@ -18,15 +17,15 @@ module.exports = {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
-    dialect: 'postgres',
+    dialect: "postgres",
   },
   production: {
     use_env_variable: `DATABASE_URL`,
-    dialect: 'postgres',
+    dialect: "postgres",
     dialectOptions: {
       ssl: {
         require: true,
-        rejectUnauthorized: false, // <<<<<<< YOU NEED THIS TO FIX UNHANDLED REJECTION 
+        rejectUnauthorized: false, // <<<<<<< YOU NEED THIS TO FIX UNHANDLED REJECTION
       },
     },
   },

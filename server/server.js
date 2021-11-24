@@ -76,13 +76,17 @@ passport.deserializeUser(function (user, done) {
 
 app.post("/api/createacct", createUser);
 
-app.post(`/api/login/auth`, passport.authenticate(`local`), async (req, res) => {
-  let user = await User.findOne({where:{id:req.user}})
-  res.status(`200`).send(user.username);
-});
+app.post(
+  `/api/login/auth`,
+  passport.authenticate(`local`),
+  async (req, res) => {
+    let user = await User.findOne({ where: { id: req.user } });
+    res.status(`200`).send(user.username);
+  }
+);
 
 app.get("/api/logout", async (req, res) => {
-  req.session.destroy(err=>console.log(err))
+  req.session.destroy((err) => console.log(err));
   req.logOut();
   res.status(`200`).send(`logout successful`);
 });
@@ -93,8 +97,8 @@ app.get(`/api/user`, async (req, res) => {
     res.status(404).send(`User Not found`);
   }
 });
-app.put(`/api/user/change`, (req,res)=>{
-  changeUser(req,res)
+app.put(`/api/user/change`, (req, res) => {
+  changeUser(req, res);
 });
 
 app.delete(`/api/user/delete`, deleteUser);

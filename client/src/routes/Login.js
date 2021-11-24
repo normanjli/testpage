@@ -51,8 +51,8 @@ const Login = () => {
   };
   return (
     <>
-      <Navbar title='Login to your account' />
-      <div style={{ height: 3 + `em`, textAlign: `center`, marginTop:'5em'}}>
+      <Navbar title="Login to your account" />
+      <div style={{ height: 3 + `em`, textAlign: `center`, marginTop: "5em" }}>
         <h1>{message}</h1>
       </div>
       {loginOrCreate}

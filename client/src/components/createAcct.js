@@ -60,7 +60,12 @@ const CreateAcct = ({ onSubmit, onClick }) => {
         )}
         <div className="loginbtns">
           <button type="submit">Create User</button>
-          <button className='change' style={{backgroundColor:'unset',border:'unset'}} onClick={onClick} value="login">
+          <button
+            className="change"
+            style={{ backgroundColor: "unset", border: "unset" }}
+            onClick={onClick}
+            value="login"
+          >
             Login
           </button>
         </div>

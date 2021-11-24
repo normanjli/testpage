@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <>
       <Navbar title="Welcome to the Drink Getter" />
-      <div style={{ height:`10em`,width: "50vw",  marginTop:'5em' }}>
+      <div style={{ height: `10em`, width: "50vw", marginTop: "5em" }}>
         <h2>
           Here you can view random drinks queried from the{" "}
           <a

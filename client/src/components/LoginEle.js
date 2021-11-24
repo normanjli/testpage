@@ -37,7 +37,12 @@ const LoginEle = ({ onSubmit, onClick }) => {
         )}
         <div className="loginbtns">
           <button type="submit">Login</button>
-          <button className='change' style={{backgroundColor:'unset',border:'unset'}}  onClick={onClick} value="create">
+          <button
+            className="change"
+            style={{ backgroundColor: "unset", border: "unset" }}
+            onClick={onClick}
+            value="create"
+          >
             Create User
           </button>
         </div>

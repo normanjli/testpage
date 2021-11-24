@@ -96,8 +96,8 @@ input {
   border: solid black 1px;
   padding: 0.2em;
 }
-.links>div>a{
-  padding:.5em
+.links > div > a {
+  padding: 0.5em;
 }
 .login {
   display: flex;
@@ -121,10 +121,10 @@ input {
   display: flex;
   margin-top: 0.2em;
 }
-.change{
-  padding:.3em;
+.change {
+  padding: 0.3em;
 }
-.change:hover{
+.change:hover {
   text-decoration: underline;
 }
 .searchtypebtn {
@@ -264,7 +264,7 @@ input {
   .navbar {
     justify-content: space-between;
     flex-direction: column;
-    height:fit-content;
+    height: fit-content;
   }
   .links > div {
     top: 3.75em;

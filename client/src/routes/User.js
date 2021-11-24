@@ -6,10 +6,10 @@ import Navbar from "../components/NavBar/Navbar";
 const User = () => {
   const [message, setMessage] = useState(``);
   const navigate = useNavigate();
-  const getUname = useCallback( () => {
-      if (localStorage.getItem(`username`)!==null){
-        setMessage(`Welcome ${localStorage.getItem(`username`)}`);
-      } else{
+  const getUname = useCallback(() => {
+    if (localStorage.getItem(`username`) !== null) {
+      setMessage(`Welcome ${localStorage.getItem(`username`)}`);
+    } else {
       setMessage(
         `Please login first! Automatically redirecting you to login page...`
       );
@@ -25,9 +25,9 @@ const User = () => {
         { withCredentials: true }
       );
       if (+res.status === 200) {
-        if(res.data !== `success`){
-          localStorage.removeItem(`username`)
-          localStorage.setItem(`username`,res.data)
+        if (res.data !== `success`) {
+          localStorage.removeItem(`username`);
+          localStorage.setItem(`username`, res.data);
         }
         setMessage(`Successfully changed info, ${res.data}`);
       }
@@ -43,12 +43,18 @@ const User = () => {
     }
   };
   const deleteAcct = async (data) => {
-    if (window.confirm(`Are you sure you want to delete your Account, ${localStorage.getItem(`username`)}? Your account data will be unrecoverable`)) {
+    if (
+      window.confirm(
+        `Are you sure you want to delete your Account, ${localStorage.getItem(
+          `username`
+        )}? Your account data will be unrecoverable`
+      )
+    ) {
       try {
-        let res = await axios.delete(`/api/user/delete`, {data});
-        setMessage(res.data)
-        localStorage.removeItem(`username`)
-        setTimeout(()=>navigate(`/`,{replace:true}),1000)
+        let res = await axios.delete(`/api/user/delete`, { data });
+        setMessage(res.data);
+        localStorage.removeItem(`username`);
+        setTimeout(() => navigate(`/`, { replace: true }), 1000);
       } catch (error) {
         setMessage(error.response.data);
       }
@@ -57,8 +63,10 @@ const User = () => {
   useEffect(() => getUname(), [getUname]);
   return (
     <>
-            <Navbar title='Profile Page'/>
-      <div style={{ height: 'fit-content', textAlign: `center`, marginTop:'5em' }}>
+      <Navbar title="Profile Page" />
+      <div
+        style={{ height: "fit-content", textAlign: `center`, marginTop: "5em" }}
+      >
         <h2>{message}</h2>
       </div>
       <ChangeAcct onSubmit={changeInfo} onClick={deleteAcct} />
