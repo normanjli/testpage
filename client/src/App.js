@@ -1,10 +1,9 @@
 import './App.css';
-import {React,useEffect,useState} from 'react'
+import React from 'react'
 import Login from './routes/Login';
 import Home from './routes/Home';
 import Drinks from './routes/Drinks';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/NavBar/Navbar';
 import Logout from './routes/Logout';
 import User from './routes/User';
 
