@@ -3,7 +3,7 @@ import axios from "axios";
 import Displaycard from "../components/displaycard/Displaycard";
 import Search from "../components/search/search";
 import Button from "../components/button/Button";
-import FullDisplayCard from "../components/FullDisplayCard";
+import FullDisplayCard from "../components/FullDisplayCard/FullDisplayCard";
 import handler from "../handler";
 import Navbar from "../components/NavBar/Navbar";
 
