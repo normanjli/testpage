@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import CreateAcct from "../components/createAcct";
-import LoginEle from "../components/LoginEle";
+import CreateAcct from "../components/createAcct/createAcct";
+import LoginEle from "../components/loginEle/LoginEle";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/NavBar/Navbar";
 const Login = () => {

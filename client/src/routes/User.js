@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
-import ChangeAcct from "../components/changeAcct";
+import ChangeAcct from "../components/changeAcct/changeAcct";
 import Navbar from "../components/NavBar/Navbar";
 const User = () => {
   const [message, setMessage] = useState(``);
