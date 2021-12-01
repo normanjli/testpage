@@ -27,7 +27,7 @@ const CreateAcct = ({ onSubmit, onClick }) => {
           <input
             {...register("password", {
               required: true,
-              pattern:/^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[!@# $%^&*?.]).{8,}$/,
+              pattern:/^(?=.\d)(?=.[a-z])(?=.[A-Z])(?=.[^a-zA-Z0-9])(?!.*\s).{8,15}$/,
             })}
             id="password"
             type="password"
@@ -36,8 +36,7 @@ const CreateAcct = ({ onSubmit, onClick }) => {
         </div>
         {errors?.password?.type === "pattern" && (
           <span>
-            Password must contain 1 letter, 1 number, and 1 of the following
-            symbols:!@#$%^&*?.
+            Password must contain an uppercase letter,<br/> a lowercaseletter, a number, and a symbol.
           </span>
         )}
         {errors?.password?.type === "required" && (
