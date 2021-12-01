@@ -11,7 +11,15 @@ const bcrypt = require(`bcryptjs`);
 const app = express();
 const session = require(`express-session`);
 const SequelizeStore = require(`connect-session-sequelize`)(session.Store);
-const { createUser, changeUser, deleteUser } = require("./controller");
+const {
+  createUser,
+  changeUser,
+  deleteUser,
+  likeDrink,
+  login,
+  unLikeDrink,
+  getLikedDrinks,
+} = require("./controller");
 const { Sequelize, DataTypes } = require(`sequelize`);
 const sequelize = new Sequelize(DATABASE_URL, {
   dialect: `postgres`,
@@ -50,7 +58,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 const LocalStrategy = require(`passport-local`).Strategy;
-const user = require("../models/user");
 passport.use(
   new LocalStrategy(async function (username, password, done) {
     User.findOne({ where: { username: username } })
@@ -76,14 +83,7 @@ passport.deserializeUser(function (user, done) {
 
 app.post("/api/createacct", createUser);
 
-app.post(
-  `/api/login/auth`,
-  passport.authenticate(`local`),
-  async (req, res) => {
-    let user = await User.findOne({ where: { id: req.user } });
-    res.status(`200`).send(user.username);
-  }
-);
+app.post(`/api/login/auth`, passport.authenticate(`local`), login);
 
 app.get("/api/logout", async (req, res) => {
   req.session.destroy((err) => console.log(err));
@@ -97,11 +97,11 @@ app.get(`/api/user`, async (req, res) => {
     res.status(404).send(`User Not found`);
   }
 });
-app.put(`/api/user/change`, (req, res) => {
-  changeUser(req, res);
-});
-
+app.put(`/api/user/change`, changeUser);
 app.delete(`/api/user/delete`, deleteUser);
+app.delete(`/api/user/unlike/:id`, unLikeDrink);
+app.put(`/api/user/like`, likeDrink);
+app.get(`/api/user/like/list`,getLikedDrinks)
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
 });

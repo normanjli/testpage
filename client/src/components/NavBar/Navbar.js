@@ -20,6 +20,7 @@ const Navbar = ({ title }) => {
     } else {
       window.removeEventListener(`click`, close);
     }
+    return ()=>{}
   });
   return (
     <nav className="navbar">

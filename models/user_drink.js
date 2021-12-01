@@ -14,13 +14,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User_Drink.init({
-    User_id: DataTypes.INTEGER,
-      references:{
-        model:'Users',
-        key:`id`,
-        deferrable: sequelize.Deferrable.INITIALLY_IMMEDIATE
+    User_id:{ 
+    type:DataTypes.INTEGER,
+    primaryKey:true
     },
-    Drink_id : DataTypes.INTEGER,
+    Drink_id :{
+      type:DataTypes.INTEGER,
+      primaryKey:true
+    } 
   }, {
     sequelize,
     modelName: 'User_Drink',

@@ -6,6 +6,7 @@ import Button from "../components/button/Button";
 import FullDisplayCard from "../components/FullDisplayCard/FullDisplayCard";
 import handler from "../handler";
 import Navbar from "../components/NavBar/Navbar";
+import Message from "../components/Message/Message";
 
 const Drinks = () => {
   const [searchDrinkVal, setSearchDrinkVal] = useState("");
@@ -15,6 +16,7 @@ const Drinks = () => {
   const [fullDrinkCard, setFullDrinkCard] = useState();
   const [sent, setSent] = useState("");
   const [displayedDrink, setDisplayedDrink] = useState(``);
+  const [errorMessage, setMessage] = useState(``)
   const onChangeDrink = (event) => {
     setSearchDrinkVal(event.target.value);
     setSent(false);
@@ -47,7 +49,6 @@ const Drinks = () => {
   const onSubmitIngredient = async (event) => {
     event.preventDefault();
     let ingredientsArr = searchIngVal.split(`,`);
-
     if (ingredientsArr.length === 1) {
       axios
         .get(
@@ -57,7 +58,10 @@ const Drinks = () => {
           let { drinks } = res.data;
           drinks ? setDrink(drinks) : setSent(true);
         })
-        .catch((err) => console.log(err));
+        .catch((err) =>{
+          setMessage(err.response.data);
+          setTimeout(()=>setMessage(``),2000)
+        })
     } else {
       let drinksArr = [];
       for (let i of ingredientsArr) {
@@ -92,6 +96,7 @@ const Drinks = () => {
         );
       }
     } else {
+      try{
       let res = await axios.get(
         `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`
       );
@@ -100,7 +105,11 @@ const Drinks = () => {
       setFullDrinkCard(
         <FullDisplayCard drink={drinks[0]} onClick={() => close()} />
       );
+    }catch(error){
+      setMessage(error.response.data)
+      setTimeout(()=>setMessage(``),2000)
     }
+  }
   };
   let drinkSearch = (
     <Search
@@ -126,21 +135,67 @@ const Drinks = () => {
       text={`Search by Ingredients`}
     />
   );
+  const likeDrink =  async (drink) => {
+    try{
+      let temp = `${localStorage.getItem(`likedDrinks`)}, ${drink.idDrink}`
+      await axios.put(`/api/user/like`,{drink})
+      localStorage.setItem(`likedDrinks`, temp)
+      setMessage(`Added ${drink.strDrink} to favorites!`);
+      setTimeout(()=>setMessage(``),2000)
+    }catch(error){
+      setMessage(error.response.data)
+      setTimeout(()=>setMessage(``),2000)
+    }
+  }
+  const unLikeDrink = async (drink) => {
+    try {
+      let res = await axios.delete(`/api/user/unlike/${drink.idDrink}`, {
+        drink,
+      });
+      if (res.status === 200) {
+        localStorage.removeItem(`likedDrinks`);
+        if (res.data) {
+          localStorage.setItem(`likedDrinks`, res.data);
+        }
+        setMessage(`Removed ${drink.strDrink} from favorites!`);
+        setTimeout(()=>setMessage(``),2000)
+      }
+    } catch (error) {
+      setMessage(
+        `Could not remove ${drink.strDrink} from favorites, try again`
+      );
+      setTimeout(() => setMessage(``), 2000);
+    }
+  };
   if (drinkArr !== `` && !drinkArr.includes(undefined)) {
     for (let i = 0; i < drinkArr.length; i++) {
-      drinkCard.push(
-        <Displaycard
-          drink={drinkArr[i]}
-          key={drinkArr[i].idDrink}
-          onClick={() => renderFullDrink(drinkArr[i])}
-        />
-      );
+      if (localStorage.getItem(`likedDrinks`)&&localStorage.getItem('likedDrinks').includes(drinkArr[i].idDrink)){
+        drinkCard.push(
+          <Displaycard
+            drink={drinkArr[i]}
+            key={drinkArr[i].idDrink}
+            type='Unfavorite'
+            moreDetails={() => renderFullDrink(drinkArr[i])}
+            likeDrink={()=>unLikeDrink(drinkArr[i])}
+          />
+        );
+      }else{
+        drinkCard.push(
+          <Displaycard
+            drink={drinkArr[i]}
+            key={drinkArr[i].idDrink}
+            type='Favorite'
+            moreDetails={() => renderFullDrink(drinkArr[i])}
+            likeDrink={()=>likeDrink(drinkArr[i])}
+          />
+        );
+      }
     }
   }
   return (
     <>
       <Navbar title="Search for Drinks" />
-      <div className="searchtypebtn">
+      <div className="searchtypebtn" style={{marginTop:'5em'}}>
         <Button
           className="searchbtn"
           onClick={() => {
@@ -164,6 +219,7 @@ const Drinks = () => {
       <Button onClick={drinkClick} id={`test`} text={`Find a random Drink`} />
       {fullDrinkCard}
       <div className="drink-container">{drinkCard}</div>
+      <Message message={errorMessage}/>
     </>
   );
 };

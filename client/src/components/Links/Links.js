@@ -6,6 +6,7 @@ const Links = () => {
   const navigate = useNavigate();
   const logout = async () => {
     localStorage.removeItem(`username`);
+    localStorage.removeItem(`likedDrinks`)
     await axios.get(`/api/logout`, { withCredentials: true });
     setTimeout(() => navigate("/", { replace: true }), 1000);
   };
