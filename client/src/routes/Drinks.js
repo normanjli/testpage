@@ -139,7 +139,7 @@ const Drinks = () => {
     try{
       let temp = `${localStorage.getItem(`likedDrinks`)}, ${drink.idDrink}`
       await axios.put(`/api/user/like`,{drink})
-      localStorage.setItem(`likedDrinks`, temp)
+      localStorage.setItem(`likedDrinks`, temp.startsWith(`,`)?temp.replace(`,`,``):temp)
       setMessage(`Added ${drink.strDrink} to favorites!`);
       setTimeout(()=>setMessage(``),2000)
     }catch(error){
