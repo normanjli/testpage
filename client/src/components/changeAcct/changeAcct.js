@@ -48,18 +48,12 @@ const ChangeAcct = ({ onSubmit, onClick }) => {
           <input
             {...register("new_password", {
               required: false,
-              pattern: /^(?=.\d)(?=.[a-z])(?=.[A-Z])(?=.[^a-zA-Z0-9])(?!.*\s).{8,15}$/,
             })}
             id="password"
             type="password"
             placeholder="New Password"
           ></input>
         </div>
-        {errors?.password?.type === "pattern" && (
-          <span>
-            Password must contain an uppercase letter,<br/> a lowercaseletter, a number, and a symbol.
-          </span>
-        )}
         {errors?.password?.type === "required" && (
           <span>Password is required</span>
         )}
