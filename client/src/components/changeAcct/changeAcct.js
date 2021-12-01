@@ -27,19 +27,12 @@ const ChangeAcct = ({ onSubmit, onClick }) => {
           <input
             {...register("oldPassword", {
               required: true,
-              pattern: /[a-z][0-9][!@#$%^&*?.]/i,
             })}
             id="password"
             type="password"
             placeholder="Old Password"
           ></input>
         </div>
-        {errors?.password?.type === "pattern" && (
-          <span>
-            Password must contain 1 letter, 1 number, and 1 of the following
-            symbols:!@#$%^&*?.
-          </span>
-        )}
         {errors?.password?.type === "required" && (
           <span>Password is required</span>
         )}
