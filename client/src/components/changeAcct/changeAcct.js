@@ -48,7 +48,7 @@ const ChangeAcct = ({ onSubmit, onClick }) => {
           <input
             {...register("new_password", {
               required: false,
-              pattern: /[a-z][0-9][!@#$%^&*?.]/i,
+              pattern: /^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[!@#$%^&*?.]).{8,}$/,
             })}
             id="password"
             type="password"
