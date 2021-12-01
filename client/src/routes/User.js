@@ -122,7 +122,6 @@ const User = () => {
         }
         setMessage(`Removed ${drink.strDrink} from favorites!`);
         drinkArr.splice(drinkArr.indexOf(drink), 1);
-        console.log(drinkArr);
       }
     } catch (error) {
       setMessage(

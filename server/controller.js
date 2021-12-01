@@ -95,7 +95,6 @@ module.exports = {
         .status(200)
         .send([user.username, likedDrinks.map((element) => element.Drink_id)]);
     } catch (error) {
-      console.log(error);
       res.status(400).send(`Database Error`);
     }
   },
