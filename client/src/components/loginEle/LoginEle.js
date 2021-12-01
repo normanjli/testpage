@@ -25,7 +25,7 @@ const LoginEle = ({ onSubmit, onClick }) => {
           <input
             {...register("password", {
               required: true,
-              pattern: /^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[!@#$%^&*?.]).{8,}$/,
+              pattern: /^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[!@# $%^&*?.]).{8,}$/,
             })}
             id="password"
             type="password"
