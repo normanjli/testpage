@@ -3,7 +3,7 @@ import React from 'react';
 const Message = ({message}) => {
   return (
   <div className='errMessage'>
-    <h3>{message}</h3>
+    <h1>{message}</h1>
   </div>
   );
 };
