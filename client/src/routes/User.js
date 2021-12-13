@@ -4,8 +4,8 @@ import { useNavigate } from "react-router";
 import ChangeAcct from "../components/changeAcct/changeAcct";
 import Navbar from "../components/NavBar/Navbar";
 import Message from "../components/Message/Message";
-import Displaycard from "../components/displaycard/Displaycard";
-import FullDisplayCard from "../components/FullDisplayCard/FullDisplayCard";
+import DrinkCont from "../components/DrinkCont/DrinkCont";
+
 const User = () => {
   const [message, setMessage] = useState(``);
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const User = () => {
         `Please login first! Automatically redirecting you to login page...`
       );
       setTimeout(() => navigate("/login", { replace: true }), 5000);
-      return ()=>{}
+      return () => {};
     }
   }, [navigate]);
   const changeInfo = async (data) => {
@@ -62,12 +62,9 @@ const User = () => {
     }
   };
   const [drinkArr, setDrinkArr] = useState([]);
-  const [fullDrinkCard, setFullDrinkCard] = useState();
-  const [displayedDrink, setDisplayedDrink] = useState(``);
-  let drinkCard = [];
   let isloaded = localStorage.getItem(`likedDrinks`);
   useEffect(() => {
-    getUname()
+    getUname();
     let arr;
     let drinkArr = [];
     (async () => {
@@ -76,11 +73,11 @@ const User = () => {
       } else {
         try {
           let likedidList = await axios.get(`/api/user/like/list`);
-          arr=likedidList.data
-          localStorage.setItem('likedDrinks',likedidList.data)
+          arr = likedidList.data;
+          localStorage.setItem("likedDrinks", likedidList.data);
         } catch (error) {
           setMessage(error.response.data);
-          return ()=>{}
+          return () => {};
         }
       }
       for (let drinkid of arr) {
@@ -90,73 +87,24 @@ const User = () => {
         if (res.data.drinks !== undefined) {
           drinkArr.push(res.data.drinks[0]);
         } else {
-          return()=>{};
+          return () => {};
         }
       }
       setDrinkArr(drinkArr);
       return () => {};
     })();
-  }, [isloaded,getUname]);
-  const close = () => {
-    setFullDrinkCard();
-    setDisplayedDrink(``);
-  };
-  const renderFullDrink = async (drink) => {
-    let { idDrink } = drink;
-    if (displayedDrink !== idDrink) {
-      setDisplayedDrink(idDrink);
-      setFullDrinkCard(
-        <FullDisplayCard drink={drink} onClick={() => close()} />
-      );
-    }
-  };
-  const unLikeDrink = async (drink) => {
-    try {
-      let res = await axios.delete(`/api/user/unlike/${drink.idDrink}`, {
-        drink,
-      });
-      if (res.status === 200) {
-        localStorage.removeItem(`likedDrinks`);
-        if (res.data) {
-          localStorage.setItem(`likedDrinks`, res.data);
-        }
-        setMessage(`Removed ${drink.strDrink} from favorites!`);
-        drinkArr.splice(drinkArr.indexOf(drink), 1);
-      }
-    } catch (error) {
-      setMessage(
-        `Could not remove ${drink.strDrink} from favorites, try again`
-      );
-      setTimeout(() => setMessage(``), 2000);
-    }
-  };
-  if (drinkArr !== `` && !drinkArr.includes(undefined)) {
-    for (let i = 0; i < drinkArr.length; i++) {
-      drinkCard.push(
-        <Displaycard
-          drink={drinkArr[i]}
-          key={drinkArr[i].idDrink}
-          type="Unfavorite"
-          moreDetails={() => renderFullDrink(drinkArr[i])}
-          likeDrink={() => unLikeDrink(drinkArr[i])}
-        />
-      );
-    }
-  }
+  }, [isloaded, getUname]);
   return (
     <>
       <Navbar title="Profile Page" />
       <div className="usercontent" style={{ marginTop: "5em" }}>
         <ChangeAcct onSubmit={changeInfo} onClick={deleteAcct} />
         <h2 style={{ marginTop: "1em" }}>
-          {drinkCard.length > 0
+          {drinkArr.length > 0
             ? `Liked Drinks`
             : "Like Some Drinks to See Some here!"}
         </h2>
-        <div className="drink-container">
-          {fullDrinkCard}
-          {drinkCard}
-        </div>
+        <DrinkCont drinkArr={drinkArr} setMessage={setMessage} />
         <Message message={message} />
       </div>
     </>

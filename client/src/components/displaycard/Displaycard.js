@@ -1,6 +1,7 @@
 import React from "react";
 
 const Displaycard = ({ drink, type, moreDetails, likeDrink }) => {
+  
   let { strDrinkThumb, strDrink } = drink;
   return (
     <div className="drinkcard" >
@@ -13,5 +14,7 @@ const Displaycard = ({ drink, type, moreDetails, likeDrink }) => {
     </div>
   );
 };
-
-export default Displaycard;
+const compareFn = (prevProps, nextProps)=> {
+  return prevProps.type===nextProps.type
+}
+export default React.memo(Displaycard,compareFn);

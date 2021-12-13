@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Links from "../Links/Links";
-const Navbar = ({ title }) => {
+const Navbar = React.memo(({ title }) => {
   const [displayed, setDisplayed] = useState(false);
   const clickHandler = () => {
     displayed
@@ -36,6 +36,6 @@ const Navbar = ({ title }) => {
       </div>
     </nav>
   );
-};
+})
 
 export default Navbar;

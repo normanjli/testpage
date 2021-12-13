@@ -1,0 +1,14 @@
+move css to individual component imports. (more readable styling)
+render props
+
+move navbar and determine the title info properly. (maybe, not sure if it matters because its going to render everytime anyways.)
+move js to outside of function, inprove modularity
+
+move server/passport/db config to ouside of server/controller files. improve modularity and readability. 
+
+
+implement an email and account recovery system
+implement a regex password validation string that works
+
+more effective and readable code.
+maybe implement a sprint system for v 1.1
